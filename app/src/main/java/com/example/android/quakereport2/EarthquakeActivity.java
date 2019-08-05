@@ -299,33 +299,30 @@ public class EarthquakeActivity extends AppCompatActivity
         private void updateUi(List<Earthquake> earthquakes) {
         }
 
-        public void onLoaderReset(Loader<List<Earthquake>> loader, Menu menu) {
+
+        public void onLoaderReset(Loader<List<Earthquake>> loader) {
             // Loader reset, so we can clear out our existing data.
             mAdapter.clear();
 
+            }
 
-            @Override
-            public boolean onCreateOptionMenu (Menu menu){
-                getMenuInflater().inflate(R.menu.main, menu);
+        @Override
+        public boolean onCreateOptionsMenu (Menu menu){
+            getMenuInflater().inflate(R.menu.main, menu);
+            return true;
+        }
+
+
+        @Override
+
+        public boolean onOptionsItemSelected (MenuItem item){
+            int id = item.getItemId();
+            if (id == R.id.action_settings) {
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
                 return true;
             }
+            return super.onOptionsItemSelected(item);
 
-
-            @Override
-
-            public boolean onOptionsItemSelected (MenuItem item){
-                int id = item.getItemId();
-                if (id == R.id.action_settings) {
-                    Intent settingsIntent = new Intent(this, SettingsActivity.class);
-                    startActivity(settingsIntent);
-                    return true;
-                }
-                return super.onOptionsItemSelected(item);
-
-                //    private class EarthquakeLoader extends Loader<List<Earthquake>> {
-                //    public EarthquakeLoader(EarthquakeActivity earthquakeActivity, String usgsRequestUrl) {
-                //        super();
-                //    }
-            }
         }
     }
